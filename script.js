@@ -13,7 +13,7 @@ fetch(randCat_URL)
     slider.innerText = hatData[0].text;
   })
   .catch((error) => {
-    console.error("Error fetching data:", error);
+    console.error("error", error);
   });
 
 next.addEventListener("click", () => {
