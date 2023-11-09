@@ -14,11 +14,35 @@ const Cat = () => {
       setFacts(res.data);
     } catch (error) {
       console.error(error);
-      setFacts("Error in z facts");
+      setFacts("Error in the facts");
     }
   };
 
-  return <div></div>;
+  useEffect(() => {
+    fetchFacts();
+  }, []);
+  return (
+    <div>
+      <button
+        onClick={() => {
+          fetchFacts();
+          setmodalOpen(true);
+        }}
+      >
+        Open Modal
+      </button>
+      <Modal isOpen={modalOpen} onRequestClose={() => setmodalOpen(false)}>
+        <div className="map">
+          {""}
+          {facts.length > 0 && facts[0].text && (
+            <div className="modalFact">
+              <p>{facts[0].text}</p>
+            </div>
+          )}
+        </div>
+        <button onClick={() => setmodalOpen(false)}>Close Modal</button>
+      </Modal>
+    </div>
+  );
 };
-
 export default Cat;
